@@ -132,7 +132,6 @@
 </template>
 
 <script>
-    import io from '../lib/socket.io'
     export default {
         name:'model',
         data(){
@@ -143,18 +142,17 @@
         },
         methods:{
             connectEvent(){
-                let _this = this
-                let randomNum = Math.floor(Math.random()*10)
+                let _this = this;
+                let randomNum = Math.floor(Math.random()*10);
                 this.userInfo = {
                     userId: this.getUserId(),
                     userName: this.userNameList[randomNum],
                 }
-                this.httpServer = io.connect('localhost:3030')
-                this.httpServer.emit('add user','123')
-                this.httpServer.emit('login')
-//                this.httpServer.on('login',(data) => {
-//
-//                })
+                this.httpServer = io.connect('localhost:3030');
+                this.httpServer.emit('add user','123');
+                this.httpServer.on('login',(data) => {
+                    console.log(data)
+                })
             },
             getUserId () {
                 return (new Date().getTime() + '' + Math.floor(Math.random() * 100000 + 100)) - 0;
