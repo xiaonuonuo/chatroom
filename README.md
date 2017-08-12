@@ -1,4 +1,4 @@
-# chatroom
+## chatroom
 
 >基于 es6 + vue + webpack + socket.io + koa 的一个聊天室小项目，目前开发中 . . . 
 
