@@ -1,28 +1,51 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import login from '@/components/login'
-import model from '@/components/model'
-import chat from '@/components/chat'
+import vueRouter from 'vue-router'
+import App from '../App'
 
+ // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+const login = r => require.ensure([], () => r(require('../components/login')), 'login')
+const model = r => require.ensure([], () => r(require('../components/model')), 'model')
+const chat = r => require.ensure([], () => r(require('../components/chat')), 'chat')
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
+const routes = [
     {
       path: '/',
-      name: 'login',
-      component: login
+      component: App,
+      children: [
+          {
+              path: '',
+              redirect: '/login',
+              meta: {keepAlive:true}
+          },
+          {
+              path: '/login',
+              component: login,
+              meta: {keepAlive:true}
+          },
+          {
+              path: '/model',
+              component: model,
+          },
+          {
+              path: '/chat',
+              component: chat,
+          },
+      ]
     },
-    {
-      path: '/model',
-      name: 'model',
-      component: model
-    },
-    {
-      path: '/chat',
-      name: 'chat',
-      component: chat
-    }
+    // {
+    //   path: '/model',
+    //   name: 'model',
+    //   component: model
+    // },
+    // {
+    //   path: '/chat',
+    //   name: 'chat',
+    //   component: chat
+    // }
   ]
-})
+
+// const router = new vueRouter({
+//     routes
+// })
+
+export default routes

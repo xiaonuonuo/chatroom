@@ -137,7 +137,7 @@
         data(){
             return {
                 userInfo:{},
-                userNameList: ['加菲猫 ', '流氓兔', '蜡笔小新', '樱木花道', '机器猫', '皮卡丘', '史努比', '蓝精灵', '紫龙', '芭比 '],
+                userNameList: ['加菲猫 ', '流氓兔', '蜡笔小新', '樱木花道', '机器猫', '皮卡丘', '史努比', '蓝精灵', '紫龙', '芭比'],
             }
         },
         methods:{
@@ -158,8 +158,10 @@
                 return (new Date().getTime() + '' + Math.floor(Math.random() * 100000 + 100)) - 0;
             },
         },
-        created(){
-
+        mounted(){
+            this.$options.sockets.new_message = (data) => {
+                console.log(data)
+            }
         }
 
     }
