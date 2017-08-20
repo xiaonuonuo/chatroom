@@ -126,14 +126,30 @@
             </div>
         </div>
         <div class="chat-input">
-            <textarea name="a" id="a" rows="1"></textarea>
+            <input name="a" id="a" v-on:keyup.enter="clickButton(message)" v-model="message">
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name:'chat'
+    name:'chat',
+    data(){
+        return {
+            message:''
+        }
+    },
+    methods: {
+        clickButton: function(val){
+            // $socket is socket.io-client instance
+            console.log(val)
+            this.$socket.emit('newMessage', val);
+        }
+    },
+    created() {
+        //do something after creating vue instance
+
+    }
 
 }
 </script>
@@ -229,7 +245,7 @@ export default {
             display: flex;
             flex: 0 0 .56rem;
             padding: .08rem .1rem;
-            textarea {
+            input {
                 display: flex;
                 flex-flow: row wrap;
                 align-content: center;
