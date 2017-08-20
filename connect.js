@@ -6,7 +6,7 @@ const koa = require('koa');
 const app = new koa();
 const server = require('http').createServer(app.callback());
 const io = require('socket.io')(server);
-const port = process.env.PORT || 3010;
+const port = process.env.PORT || 1932;
 
 
 server.listen(port,() => {

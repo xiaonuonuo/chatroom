@@ -44,8 +44,8 @@ const routes = [
     // }
   ]
 
-const router = new vueRouter({
-    routes
-})
+// const router = new vueRouter({
+//     routes
+// })
 
-export default router
+export default routes

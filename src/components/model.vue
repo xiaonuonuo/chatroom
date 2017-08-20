@@ -158,8 +158,10 @@
                 return (new Date().getTime() + '' + Math.floor(Math.random() * 100000 + 100)) - 0;
             },
         },
-        created(){
-
+        mounted(){
+            this.$options.sockets.new_message = (data) => {
+                console.log(data)
+            }
         }
 
     }
