@@ -12,7 +12,7 @@ import VueSocketio from 'vue-socket.io';
 
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
-Vue.use(VueSocketio, 'http://socketserver.com:1923');
+Vue.use(VueSocketio, 'http://localhost:1932');
 Vue.use(vueRouter)
 
 const router = new vueRouter({
