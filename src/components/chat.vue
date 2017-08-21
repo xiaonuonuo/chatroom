@@ -149,6 +149,9 @@ export default {
     created() {
         //do something after creating vue instance
 
+    },
+    mounted(){
+        
     }
 
 }
