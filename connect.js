@@ -30,9 +30,10 @@ io.on('connection', function (socket) {
     var addedUser = false;
 
     // when the client emits 'new message', this listens and executes
-    socket.on('newMessage', function (data) {
+    socket.on('sendGroupMsg', function (data) {
         // we tell the client to execute 'new message'
-        socket.broadcast.emit('newMessage', {
+        console.log(data)
+        socket.broadcast.emit('receiveGroupMsg', {
             // username: socket.username,
             message: data
         });
