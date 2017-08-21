@@ -150,16 +150,13 @@ export default {
         //do something after creating vue instance
 
     },
-<<<<<<< HEAD
-    mounted(){
-        
-=======
+
+
     mounted() {
         //do something after mounting vue instance
         this.$socket.on('receiveGroupMsg',data => {
             console.log(data)
         })
->>>>>>> 8ded9ef5964e3fe917b2a9ef536fd6100be848d7
     }
 
 }
