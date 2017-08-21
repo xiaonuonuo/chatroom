@@ -126,7 +126,7 @@
             </div>
         </div>
         <div class="chat-input">
-            <input name="a" id="a" v-on:keyup.enter="clickButton(message)" v-model="message">
+            <input name="a" id="a" v-on:keyup.enter="sendMessage(message)" v-model="message">
         </div>
     </div>
 </template>
@@ -140,18 +140,26 @@ export default {
         }
     },
     methods: {
-        clickButton: function(val){
+        sendMessage: function(val){
             // $socket is socket.io-client instance
             console.log(val)
-            this.$socket.emit('newMessage', val);
+            this.$socket.emit('sendGroupMsg', val);
         }
     },
     created() {
         //do something after creating vue instance
 
     },
+<<<<<<< HEAD
     mounted(){
         
+=======
+    mounted() {
+        //do something after mounting vue instance
+        this.$socket.on('receiveGroupMsg',data => {
+            console.log(data)
+        })
+>>>>>>> 8ded9ef5964e3fe917b2a9ef536fd6100be848d7
     }
 
 }
