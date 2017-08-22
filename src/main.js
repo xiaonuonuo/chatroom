@@ -7,12 +7,13 @@ import routes from './router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import './config/rem'
-import VueSocketio from 'vue-socket.io';
+import io from 'socket.io-client'
 
-
+//阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false;
+
+Vue.prototype.io = io;
 Vue.use(VueMaterial);
-Vue.use(VueSocketio, 'http://localhost:1932');
 Vue.use(vueRouter)
 
 const router = new vueRouter({
@@ -25,12 +26,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
-  sockets:{
-    connect: function(){
-      console.log('socket connected')
-    },
-    customEmit: function(val){
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-    }
-  },
 })

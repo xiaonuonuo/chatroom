@@ -132,29 +132,39 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name:'chat',
     data(){
         return {
-            message:''
+            message:'',
+            socket:''
         }
     },
     methods: {
         sendMessage: function(val){
             // $socket is socket.io-client instance
-            console.log(val)
-            this.$socket.emit('sendGroupMsg', val);
+            this.socket.emit('sendGroupMsg', val);
         }
     },
-    created() {
-        //do something after creating vue instance
+    computed:{
 
     },
 
+    created() {
+        //do something after creating vue instance
+        var that = this
+        this.socket = this.io.connect('http://localhost:1932')
+        this.socket.on('connect',function(){
+            console.log('socket id linked')
+        })
+
+
+    },
 
     mounted() {
         //do something after mounting vue instance
-        this.$socket.on('receiveGroupMsg',data => {
+        this.socket.on('receiveGroupMsg',function(data){
             console.log(data)
         })
     }
