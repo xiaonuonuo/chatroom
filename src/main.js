@@ -18,6 +18,7 @@ Vue.use(VueMaterial);
 Vue.use(vueRouter)
 
 const router = new vueRouter({
+    mode:'history',//去掉URL中的#号
     routes
 })
 

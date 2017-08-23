@@ -13,14 +13,22 @@ const store = new Vuex.Store({
             name: '',
             src: '',
             room: ''
-        }
+        },
+        userNum: 0,
     },
     getters: {
-        getSocket: state => state.socket
+        getSocket: state => state.socket,
+        getUser: state => state.user
     },
     mutations: {
         setSocket(state,data){
             state.socket = data
+        },
+        setUser(state,data){
+            state.user = data
+        },
+        setUserNum(state,data){
+            state.userName = data
         }
     },
     actions: {

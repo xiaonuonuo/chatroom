@@ -32,7 +32,6 @@ io.on('connection', function (socket) {
     // when the client emits 'new message', this listens and executes
     socket.on('sendGroupMsg', function (data) {
         // we tell the client to execute 'new message'
-        console.log(data)
         socket.broadcast.emit('receiveGroupMsg', {
             // username: socket.username,
             message: data
@@ -41,14 +40,15 @@ io.on('connection', function (socket) {
 
     // when the client emits 'add user', this listens and executes
     socket.on('addUser', function (username) {
-        
-        if (addedUser) return;
+
+        //if (addedUser) return;
 
         // we store the username in the socket session for this client
         socket.username = username;
         ++numUsers;
         addedUser = true;
         socket.emit('login', {
+            username:username,
             numUsers: numUsers
         });
         // echo globally (all clients) that a person has connected

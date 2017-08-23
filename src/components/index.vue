@@ -2,7 +2,7 @@
     <div class="login page">
         <div class="form">
             <h3 class="title">What's your nickname?</h3>
-            <input class="usernameInput" type="text" maxlength="14" v-on:keyup.enter="commitUserName" v-model="UserInfo.userName"/>
+            <input class="usernameInput" type="text" maxlength="14" v-on:keyup.enter="commitUserName" v-model="getUser.name"/>
         </div>
     </div>
 </template>
@@ -18,13 +18,23 @@
         },
         methods:{
             commitUserName() {
-                
+                var that = this;
+                //加入用户的名字
+                this.getSocket.emit('addUser',this.getUser.name)
+                //提交该用户到服务端，并跳转到聊天页面
+                this.getSocket.on('login',function(data){
+                    console.log(data)
+                    if(data.username){
+                        that.$router.push({path:'/chat'})
+                    }
+                })  
             },
         },
         created() {
             //do something after creating vue instance
             var that = this
             this.$store.commit('setSocket',this.io.connect('http://localhost:1932'))
+            //this.getSocket.commit('getUser',this.getUser.name)
             // this.socket = this.io.connect('http://localhost:1932')
             
             // this.socket.on('connect',function(){
@@ -33,13 +43,12 @@
 
         },
         mounted(){
-            this.getSocket.on('addUser',function(obj){
-                
-            })
+
         },
         computed:{
             ...mapGetters([
-                'getSocket'
+                'getSocket',
+                'getUser'
             ])
         }
 
