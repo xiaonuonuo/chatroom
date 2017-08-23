@@ -156,7 +156,7 @@ export default {
         var that = this
         this.socket = this.io.connect('http://localhost:1932')
         this.socket.on('connect',function(){
-            console.log('socket id linked')
+            console.log('socket is linked')
         })
 
 

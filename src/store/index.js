@@ -6,15 +6,20 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 
-const store = new Vuex({
+const store = new Vuex.Store({
     state: {
-        socket: ''
+        socket: '',
+        user:{
+            name: '',
+            src: '',
+            room: ''
+        }
     },
     getters: {
-        getsocket: state => state.socket
+        getSocket: state => state.socket
     },
     mutations: {
-        setgetsocket(state,data){
+        setSocket(state,data){
             state.socket = data
         }
     },

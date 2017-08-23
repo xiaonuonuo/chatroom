@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import vueRouter from 'vue-router'
 import routes from './router'
+import store from './store'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import './config/rem'
@@ -24,6 +25,7 @@ const router = new vueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 })
