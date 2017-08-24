@@ -11,107 +11,29 @@
             </div> -->
         </div>
         <div class="chat-container">
-            <div class="chat-main">
-                <div class="chat-item">
+            <ul class="chat-main">
+                <li class="chat-item">
                     <div class="section left-section">
                         <span class="host-img">
                             <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
                         </span>
                         <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
+                            <span>南京市 <i>2016 7.7</i></span>
                             <p>这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话这个是第一句话</p>
                         </div>
                     </div>
-                </div>
-                <div class="chat-item">
+                </li>
+                <li class="chat-item">
                     <div class="section right-section">
                         <span class="host-img">
                             <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
                         </span>
                         <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
+                            <span>南京市 <i>2016 7.7</i></span>
                             <p>这个是第一句话</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-item">
-                    <div class="section right-section">
-                        <span class="host-img">
-                            <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
-                        </span>
-                        <div class="host-in-word">
-                            <span>南京市 2016 7.7</span>
-                            <p>这个是第一句话</p>
-                        </div>
-                    </div>
-                </div>
+                </li>
                 <!--<div class="chat-item">-->
                     <!--<div class="section left-section">-->
                         <!--<span class="host-img">-->
@@ -123,7 +45,7 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
-            </div>
+            </ul>
         </div>
         <div class="chat-input">
             <input name="a" id="a" v-on:keyup.enter="sendMessage(message)" v-model="message">
@@ -133,38 +55,75 @@
 
 <script>
 import {mapGetters} from 'vuex'
+
+
 export default {
     name:'chat',
     data(){
         return {
             message:'',
-            socket:''
+            socket:'',
+            userName:''
         }
     },
     methods: {
-        sendMessage: function(val){
+        sendMessage(val){
             // $socket is socket.io-client instance
-            this.socket.emit('sendGroupMsg', val);
+            this.getSocket.emit('sendGroupMsg', val);
+
+        },
+
+
+        // <li class="chat-item">
+        //             <div class="section right-section">
+        //                 <span class="host-img">
+        //                     <img src="http://img2.vipbcw.com/582ab2b2137886672" alt="">
+        //                 </span>
+        //                 <div class="host-in-word">
+        //                     <span>南京市 <i>2016 7.7</i></span>
+        //                     <p>这个是第一句话</p>
+        //                 </div>
+        //             </div>
+        //         </li>
+        showMessage(val){
+            let li = document.createElement('li')
+            let div = document.createElement('div')
+            let span = document.createElement('span')
+            let divChild = document.createElement('div')
+            let img = document.createElement('img')
+            let p = document.createElement('p')
+            let spanChild = document.createElement('span')
+            let i = document.createElement('i')
+            li.className = 'chat-item'
+            div.className = val?'section left-section':'section right-section'
+            span.className = 'host-img'
+            divChild.className = 'host-in-word'
+            
+
         }
     },
     computed:{
-
+        ...mapGetters([
+                'getSocket',
+                'getUser'
+            ])
     },
 
     created() {
         //do something after creating vue instance
         var that = this
-        this.socket = this.io.connect('http://localhost:1932')
-        this.socket.on('connect',function(){
+        console.log(this)
+        this.userName = this.$route.query.userName;
+        this.$store.commit('setSocket',this.io.connect('http://localhost:1932'))
+
+        this.getSocket.on('connect',function(){
             console.log('socket is linked')
         })
-
-
     },
 
-    mounted() {
+    beforeUpdate() {
         //do something after mounting vue instance
-        this.socket.on('receiveGroupMsg',function(data){
+        this.getSocket.on('receiveGroupMsg',function(data){
             console.log(data)
         })
     }
@@ -239,6 +198,9 @@ export default {
                                 display: block;
                                 padding-left: .03rem;
                                 font-size: .12rem;
+                                &>i {
+                                    font-size:.1rem;
+                                }
                             }
                             p {
                                 padding: .06rem .1rem;

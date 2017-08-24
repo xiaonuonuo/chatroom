@@ -9,11 +9,13 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import './config/rem'
 import io from 'socket.io-client'
+import utils from './assets/js/utils'
 
 //阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false;
 
 Vue.prototype.io = io;
+Vue.prototype.utils = utils;
 Vue.use(VueMaterial);
 Vue.use(vueRouter)
 

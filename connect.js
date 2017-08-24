@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
     socket.on('sendGroupMsg', function (data) {
         // we tell the client to execute 'new message'
         socket.broadcast.emit('receiveGroupMsg', {
-            // username: socket.username,
+            username: socket.username,
             message: data
         });
     });

@@ -13,7 +13,7 @@
         name:'index',
         data(){
             return {
-                userNameList: ['加菲猫 ', '流氓兔', '蜡笔小新', '樱木花道', '机器猫', '皮卡丘', '史努比', '蓝精灵', '紫龙', '芭比'],
+
             }
         },
         methods:{
@@ -25,7 +25,7 @@
                 this.getSocket.on('login',function(data){
                     console.log(data)
                     if(data.username){
-                        that.$router.push({path:'/chat'})
+                        that.$router.push({path:'/chat',query:{userName:that.getUser.name}})
                     }
                 })  
             },
@@ -33,7 +33,12 @@
         created() {
             //do something after creating vue instance
             var that = this
+
             this.$store.commit('setSocket',this.io.connect('http://localhost:1932'))
+            this.getSocket.on('connect',function(){
+                console.log('socket is linked')
+            })
+
             //this.getSocket.commit('getUser',this.getUser.name)
             // this.socket = this.io.connect('http://localhost:1932')
             
