@@ -70,7 +70,12 @@ export default {
         sendMessage(val){
             // $socket is socket.io-client instance
             this.getSocket.emit('sendGroupMsg', val);
+        },
 
+        connectEvent(){
+            this.getSocket.on('receiveGroupMsg', function(data) {
+                that.showMessage()
+            })
         },
 
 
@@ -98,9 +103,22 @@ export default {
             div.className = val?'section left-section':'section right-section'
             span.className = 'host-img'
             divChild.className = 'host-in-word'
-            
+            img.src = 'http://img2.vipbcw.com/582ab2b2137886672',
+            spanChild.innerHTML = '南京市'
+            i.innerHTML = this.getTime()
+            p.innerHTML = '这是一句话'
+            spanChild.appendChild(i)
+            divChild.appendChild(spanChild)
+            divChild.appendChild(p)
+            span.appendChild(img)
+            div.appendChild(span)
+            div.appendChild(divChild)
+            li.appendChild(div)
+            document.querySelector('.chat-main').appendChild(li)
+        },
 
-        }
+
+
     },
     computed:{
         ...mapGetters([
@@ -110,7 +128,7 @@ export default {
     },
 
     created() {
-        //do something after creating vue instance
+        //do something after creating vue instance 2.6.9.1826
         var that = this
         console.log(this)
         this.userName = this.$route.query.userName;
@@ -120,12 +138,12 @@ export default {
             console.log('socket is linked')
         })
     },
-
+    mounted(){
+        this.connectEvent();
+    },
     beforeUpdate() {
         //do something after mounting vue instance
-        this.getSocket.on('receiveGroupMsg',function(data){
-            console.log(data)
-        })
+
     }
 
 }

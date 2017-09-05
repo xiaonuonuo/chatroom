@@ -10,6 +10,7 @@ import 'vue-material/dist/vue-material.css'
 import './config/rem'
 import io from 'socket.io-client'
 import utils from './assets/js/utils'
+import './assets/js/formatTime'
 
 //阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false;
